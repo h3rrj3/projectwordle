@@ -7,12 +7,13 @@ public class Main {
         // provisorische Worteingabe
         Scanner scanner = new Scanner(System.in);
         System.out.print("Geben Sie das Lösungswort ein: ");
-        String loesung = scanner.nextLine();
-        System.out.print("Geben Sie das Eingabewort ein): ");
-        String eingabe = scanner.nextLine();
+        String loesung = scanner.nextLine().toUpperCase();
+        System.out.print("Geben Sie das Eingabewort ein: ");
+        String eingabe = scanner.nextLine().toUpperCase();
 
-
-        //
-        BuchstabenManager.buchstabenVergleich(loesung, eingabe);
+        // Zugriff auf Buchstaben-Vergleich
+        int[] anzeigeArray;
+        anzeigeArray = BuchstabenManager.buchstabenVergleich(loesung, eingabe);
+        BuchstabenManager.anzeigeFarbausgabe(anzeigeArray, eingabe);
     }
 }
