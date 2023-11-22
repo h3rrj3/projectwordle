@@ -6,7 +6,7 @@ public class BuchstabenManager {
         int[] anzeigeArray = {0, 0, 0, 0, 0};                           // 0 = Zeichen falsch; 1 = Zeichen rot (vorhanden aber falsche Stelle), 2 = Zeichen richtig
 
         if (eingabe.equalsIgnoreCase(loesung)) {
-            anzeigeArray = new int[]{2, 2, 2, 2, 2};                    // z.Z. nur für Debugging notwendig
+            anzeigeArray = new int[] {2, 2, 2, 2, 2};                   // z.Z. nur für Debugging notwendig
             System.out.println("You won!");                             // wird später anders gelöst?
         } else {
             for (int i = 0; i < loesung.length(); i++) {
@@ -26,7 +26,7 @@ public class BuchstabenManager {
     }
 
     //provisorische Ausgabe in der entsprechenden Farbe
-    public static String anzeigeFarbausgabe (int[] anzeigeArray, String eingabe) {
+    public static void anzeigeFarbausgabe (int[] anzeigeArray, String eingabe) {
         for (int i = 0; i < eingabe.length(); i++) {
             if (anzeigeArray[i] == 0) {
                 System.out.print(eingabe.charAt(i));
@@ -38,6 +38,5 @@ public class BuchstabenManager {
                 }
             }
         }
-        return eingabe;
     }
 }
