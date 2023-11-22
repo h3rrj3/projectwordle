@@ -9,6 +9,13 @@ public class ColorChange {
         System.out.println(ANSI_GREEN + "test gruen" + ANSI_RESET);
         System.out.println(ANSI_RED_BACKGROUND + "test background" + ANSI_BLACK_BACKGROUND);
     }
+
 }
 // https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
 // Quelle meines Wissens
+
+// ColorChange Farbe = new ColorChange();
+//        Farbe.Color();
+// (siehe oben) Der Code muss in die Main eingefügt werden.
+
+// Aufgabe Fabio: Einen Buchstaben auswählen und probieren nur diesen im ganzen Wort einzufärben
