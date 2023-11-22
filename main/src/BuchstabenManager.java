@@ -14,7 +14,7 @@ public class BuchstabenManager {
                     anzeigeArray[i] = 2;
                 } else {
                     for (int j = 0; j < loesung.length(); j++) {
-                        if (eingabe.charAt(i) == loesung.charAt(j)) {   // Zeichen ist vorhanden aber falschen Stelle => anzeigeArray[i] = 1
+                        if (eingabe.charAt(i) == loesung.charAt(j)) {   // Zeichen ist vorhanden aber falsche Stelle => anzeigeArray[i] = 1
                             anzeigeArray[i] = 1;
                         }
                     }
@@ -32,7 +32,7 @@ public class BuchstabenManager {
                 System.out.print(eingabe.charAt(i));
             } else {
                 if (anzeigeArray[i] == 1) {
-                    System.out.print(ColorChange.ANSI_RED + eingabe.charAt(i) + ColorChange.ANSI_RESET);
+                    System.out.print(ColorChange.ANSI_YELLOW + eingabe.charAt(i) + ColorChange.ANSI_RESET);
                 } else {
                     System.out.print(ColorChange.ANSI_GREEN + eingabe.charAt(i) + ColorChange.ANSI_RESET);
                 }
