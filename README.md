@@ -1,2 +1,2 @@
 # projectwordle
-Gemeinsames Repository für unser Worde-Projekt
+Gemeinsames Repository für unser Wordle-Projekt
