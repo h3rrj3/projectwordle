@@ -5,7 +5,6 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class WordManager {
-    static final String word = "DUSCHE";
     int wordlength =0;
 
     public int getWordlength() {
@@ -16,7 +15,6 @@ public class WordManager {
         this.wordlength = wordlength;
     }
 
-    String[] wordfill = new String[word.length()];
     String SolutionWord = getSolutionWord();
 
     public String getSolutionWord(){
@@ -89,7 +87,7 @@ public class WordManager {
      return false;
     }
 
-
+    /*
     public String tostring() {
         String string = Arrays.toString(wordfill);
         string = string.replace("[", "");
@@ -101,6 +99,8 @@ public class WordManager {
         System.out.println(string);
         return string;
     }
+
+     */
 
 }
 
