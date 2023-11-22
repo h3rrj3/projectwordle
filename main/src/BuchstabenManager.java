@@ -28,16 +28,16 @@ public class BuchstabenManager {
     //provisorische Ausgabe in der entsprechenden Farbe
     public static String anzeigeFarbausgabe (int[] anzeigeArray, String eingabe) {
         for (int i = 0; i < eingabe.length(); i++) {
-            switch (anzeigeArray[i]) {
-                case 0:
-                    System.out.print(eingabe.charAt(i));
-                case 1:
+            if (anzeigeArray[i] == 0) {
+                System.out.print(eingabe.charAt(i));
+            } else {
+                if (anzeigeArray[i] == 1) {
                     System.out.print(ColorChange.ANSI_RED + eingabe.charAt(i) + ColorChange.ANSI_RESET);
-                case 2:
+                } else {
                     System.out.print(ColorChange.ANSI_GREEN + eingabe.charAt(i) + ColorChange.ANSI_RESET);
+                }
             }
         }
         return eingabe;
     }
-
 }
