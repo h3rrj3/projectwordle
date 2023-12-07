@@ -5,27 +5,36 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class WordManager {
-    int wordlength =0;
+    private int wordLength;
+    String SolutionWord;
+    List<String>filteredList;
 
-    public int getWordlength() {
-        return wordlength;
+    public void setFilteredList(List<String> filteredList) {
+        this.filteredList = filteredList;
     }
 
-    public void setWordlength(int wordlength) {
-        this.wordlength = wordlength;
+    public List<String> getFilteredList() {
+        return filteredList;
     }
 
-    String SolutionWord = getSolutionWord();
+
+    public int getWordLength() {
+        return wordLength;
+    }
+
+    public  void setWordLength(int wordLength) {
+        this.wordLength = wordLength;
+    }
+
 
     public String getSolutionWord(){
 
         Random random = new Random();
-        List<String>filteredList = getFilteredList();
 
-        return filteredList.get(random.nextInt(filteredList.size()));
+        return filteredList.get(random.nextInt(filteredList.size())).toUpperCase();
 
     }
-    public List<String> getFilteredList() {
+    public List<String> generateWordList(int wordLength) { // getWordlistbylenght || filterwordsbylength
 
         List<String> filteredList = new LinkedList<>();
 
@@ -34,17 +43,19 @@ public class WordManager {
 
             List<String> list = Files.readAllLines(fl); // Das File in eine Liste aus Strings formen
 
-            if (getWordlength() > 1) {
+            if (wordLength > 1) {
 
                 for (int i = 0; i < list.size() - 1; i++) {
 
-                    if (list.get(i).length() == getWordlength()) {
+                    if (list.get(i).length() == wordLength) {
 
                         filteredList.add(list.get(i));
 
 
                     }
                 }
+                setFilteredList(filteredList);
+                return filteredList;
             }
 
         } catch (IOException e) {
@@ -53,18 +64,16 @@ public class WordManager {
 
         } catch (IllegalArgumentException e) {
 
-            System.out.println("Ich hab kein Wort mit Länge "+getWordlength());
+            System.out.println("Ich hab kein Wort mit Länge "+ getWordLength());
 
             return null;
         }
         return filteredList;
     }
 
-    public boolean checkSolutionWord(String word) {
+    public boolean checkSolutionWord(String loesung, String word) {
 
-        if (SolutionWord.equals(word)) {
-
-            System.out.println("Du hast gewonnen");
+        if (loesung.equals(word)) {
 
             return true;
 
@@ -73,18 +82,8 @@ public class WordManager {
         return false;
     }
 
-    public boolean wordExist(String word) {
-
-     for (int i=0; i< getFilteredList().size();i++) {
-
-            if (word.equals(getFilteredList().get(i))) {
-
-                return true;
-
-            }
-
-        }
-     return false;
+    public  boolean wordExist(String word) {
+        return filteredList.contains(word);
     }
 
     /*
