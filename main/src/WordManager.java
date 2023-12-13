@@ -31,7 +31,7 @@ public class WordManager {
 
         Random random = new Random();
 
-        return filteredList.get(random.nextInt(filteredList.size())).toUpperCase();
+        return filteredList.get(random.nextInt(filteredList.size()));
 
     }
     public List<String> generateWordList(int wordLength) { // getWordlistbylenght || filterwordsbylength
@@ -39,7 +39,7 @@ public class WordManager {
         List<String> filteredList = new LinkedList<>();
 
         try {
-            Path fl = Paths.get("C:/Users/rayen/Downloads/wordlist.txt"); //Pfad bestimmen
+            Path fl = Paths.get("C:/Users/rayen/IdeaProjects/projectwordle2.0/main/src/wordlistG.txt"); //Pfad bestimmen
 
             List<String> list = Files.readAllLines(fl); // Das File in eine Liste aus Strings formen
 

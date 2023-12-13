@@ -7,124 +7,49 @@ public class BuchstabenManager {
     WordManager wm = new WordManager();
     StringBuilder let =new StringBuilder();
 
-    public static int[] buchstabenVergleichalt(String loesung, String eingabe) {
-        int[] anzeigeArray = {0, 0, 0, 0, 0};                           // 0 = Zeichen falsch; 1 = Zeichen rot (vorhanden aber falsche Stelle), 2 = Zeichen richtig
 
-        if (eingabe.equalsIgnoreCase(loesung)) {
-            anzeigeArray = new int[]{2, 2, 2, 2, 2};                   // z.Z. nur für Debugging notwendig
-            System.out.println("You won!");                             // wird später anders gelöst?
-        } else {
-            for (int i = 0; i < loesung.length(); i++) {
-                if (eingabe.charAt(i) == loesung.charAt(i)) {           // Zeichen ist richtig => anzeigeArray[i] = 2
-                    anzeigeArray[i] = 2;
-                } else {
-                    for (int j = 0; j < loesung.length(); j++) {
-                        if (eingabe.charAt(i) == loesung.charAt(j)) {   // Zeichen ist vorhanden aber falsche Stelle => anzeigeArray[i] = 1
-                            anzeigeArray[i] = 1;
-                        }
-                    }
-                }                                                       // sonst bleibt anzeigeArray[i] = 0;
-            }
-        }
-        System.out.println(Arrays.toString(anzeigeArray));              // SOUT für Debugging, kann später gelöscht werden
-        return anzeigeArray;
-    }
 
-    //provisorische Ausgabe in der entsprechenden Farbe
-    public static void anzeigeFarbausgabe(int[] anzeigeArray, String eingabe) {
+
+    public String anzeigeFarbausgabeneu (int[]anzeigeArray,String eingabe) {
+        let.delete(0,100);
+        //System.out.println(Arrays.toString(anzeigeArray));
         for (int i = 0; i < eingabe.length(); i++) {
-            if (anzeigeArray[i] == 0) {
-                System.out.print(eingabe.charAt(i));
-            } else {
-                if (anzeigeArray[i] == 1) {
-                    System.out.print(ColorChange.ANSI_YELLOW + eingabe.charAt(i) + ColorChange.ANSI_RESET);
-                } else {
-                    System.out.print(ColorChange.ANSI_GREEN + eingabe.charAt(i) + ColorChange.ANSI_RESET);
-                }
-            }
-        }
-    }
 
-    /*-------------------------------------------------------------------------- */
-    /*public static void anzeigeFarbausgabeneu (String eingabe) {
-
-        for (int i = 0; i < eingabe.length(); i++) {
             if (anzeigeArray[i] == 0) {
-                System.out.print(eingabe.charAt(i));
+
+                let.append(eingabe.charAt(i));
+
             } else {
+
                 if (anzeigeArray[i] == 1) {
-                    System.out.print(ColorChange.ANSI_YELLOW + eingabe.charAt(i) + ColorChange.ANSI_RESET);
+
+                    let.append(ColorChange.ANSI_YELLOW + eingabe.charAt(i) + ColorChange.ANSI_RESET);
+
                 } else {
-                    System.out.print(ColorChange.ANSI_GREEN + eingabe.charAt(i) + ColorChange.ANSI_RESET);
+
+                    let.append(ColorChange.ANSI_GREEN + eingabe.charAt(i) + ColorChange.ANSI_RESET);
 
                 }
             }
         }
-
-
-
-
+       // System.out.println(let);
+        return let.toString();
     }
 
 
-     */
+
     public  String comparisonOfLetters (String loesung, String eingabe) {
-        /*
-        int[] anzeigeArray = new int[loesung.length()];                           // 0 = Zeichen falsch; 1 = Zeichen rot (vorhanden aber falsche Stelle), 2 = Zeichen richtig
-
-        if (eingabe.equalsIgnoreCase(loesung)) {
-            anzeigeArray = new int[]{2, 2, 2, 2, 2};                   // z.Z. nur für Debugging notwendig
-            System.out.println("You won!");                             // wird später anders gelöst?
-        } else {
-            for (int i = 0; i < loesung.length(); i++) {
-                if (eingabe.charAt(i) == loesung.charAt(i)) {           // Zeichen ist richtig => anzeigeArray[i] = 2
-                    anzeigeArray[i] = 2;
-                } else {
-                    for (int j = 0; j < loesung.length(); j++) {
-                        if (eingabe.charAt(i) == loesung.charAt(j)) {   // Zeichen ist vorhanden aber falsche Stelle => anzeigeArray[i] = 1
-                            anzeigeArray[i] = 1;
-                        }
-                    }
-                }
-            }
-
-            for (int m = 0; m < loesung.length(); m++) {
-                    for (int n = 0; n < loesung.length(); n++) {
-                        if (n==m){
-                            continue;
-                        }
-                        if (anzeigeArray[m] == anzeigeArray[n] && anzeigeArray[m]>0 && anzeigeArray[n]>0) {
-                            int countletter = countLetter(String.valueOf(eingabe.charAt(m)),loesung);
-                            if (countletter==1){
-                                if (anzeigeArray[m] == 2 || anzeigeArray[m] == 1){
-
-                                }else{
-                                    anzeigeArray[m]=0;
-                                }
-                            }
-                        }
-                    }
-                    // sonst bleibt anzeigeArray[i] = 0;
-            }
-        }
 
 
-        System.out.println(Arrays.toString(anzeigeArray));              // SOUT für Debugging, kann später gelöscht werden
-        return Arrays.toString(anzeigeArray);
-
-         */
-
+        int[] anzeigeArray = new int[loesung.length()];                 // 0 = Zeichen falsch; 1 = Zeichen rot (vorhanden aber falsche Stelle), 2 = Zeichen richtig
 
         StringBuilder word = new StringBuilder();
         int count = 0;
-        boolean stop = true;
 
         if (!(wm.wordExist(eingabe))) {
             System.out.println("Dieses Wort existiert nicht oder entspricht nicht der Länge " + loesung.length());
             return null;
         }
-
-        eingabe = eingabe.toUpperCase();
 
         if (wm.checkSolutionWord(loesung, eingabe)) {
 
@@ -133,59 +58,75 @@ public class BuchstabenManager {
 
         }
 
-        for (int i = 0; i < loesung.length(); i++) {
+        if (eingabe.equalsIgnoreCase(loesung)) {
 
-            if (eingabe.charAt(i) == loesung.charAt(i)) {
+            anzeigeArray = new int[]{2, 2, 2, 2, 2};
 
-                word.append(ColorChange.ANSI_GREEN + eingabe.charAt(i) + ColorChange.ANSI_RESET);
 
-            } else {
+        } else {
 
-                for (int j = 0; j < loesung.length() && stop; j++) {
+            for (int i = 0; i < loesung.length(); i++) {
 
-                    if (eingabe.charAt(i) == loesung.charAt(j)) {   // Zeichen ist vorhanden aber falsche Stelle => anzeigeArray[i] = 1
+                if (eingabe.charAt(i) == loesung.charAt(i)) {// Zeichen ist richtig => anzeigeArray[i] = 2
 
-                            word.append(ColorChange.ANSI_YELLOW + eingabe.charAt(i) + ColorChange.ANSI_RESET);
+                    anzeigeArray[i] = 2;
 
-                        count=0;
+                } else {
 
-                        stop = false;
+                    for (int j = 0; j < loesung.length(); j++) {
 
-                    } else {
+                        if (eingabe.charAt(i) == loesung.charAt(j)) {// Zeichen ist vorhanden aber falsche Stelle => anzeigeArray[i] = 1
 
-                        count++;
+                            anzeigeArray[i] = 1;
+
+                        }
+                    }
+                }
+            }
+        }
+
+        for (int m = 0; m < loesung.length(); m++) {
+
+            int countletter = countLetter(String.valueOf(eingabe.charAt(m)), loesung);  //Anzahl eines Buchstaben in dem Lösungswort
+
+            if (countletter >= 1) {                                                       //Falls der Buchstabe min 1 Mal vorkommt
+
+                for (int n = 0; n < loesung.length(); n++) {
+
+                    if (n == m) {                                                         //n==m msteht für den Buchstabe der abgefragt wird und n stht für alle anderen Buchstaben die im Lösungswort vorkommen wäre die selbe Stelle und das wollen wir ja gar nicht abfragen
+
+                        continue;
 
                     }
+                    if (eingabe.charAt(m) == eingabe.charAt(n) && anzeigeArray[m] > 0 && anzeigeArray[n] > 0) { // Beide Stellen des Lösungswort müssen gleich sein, beide Stellen dürfen den Wert 0 nicht haben [0 != 0]
 
-                }
+                        if (anzeigeArray[m] == 2 || anzeigeArray[m] == 1) {                //Falls das Lösungswort einmal vorkommt oder das
 
+                            if ((anzeigeArray[n] == 2)) {
 
-                stop = true;
-                if (count == loesung.length()) {
-                    word.append(eingabe.charAt(i));
-                    count = 0;
+                                anzeigeArray[m] = 0;
+
+                            } else {
+
+                                anzeigeArray[n] = 0;
+
+                            }
+
+                        } else {
+
+                            anzeigeArray[m] = 0;                // sonst bleibt anzeigeArray[i] = 0;
+
+                        }
+                    }
                 }
             }
-
-            /*
-            if (eingabe.charAt(marked) == eingabe.charAt(i)){
-                marked=-1;
-                word.append(ColorChange.ANSI_BLUE + eingabe.charAt(i) + ColorChange.ANSI_RESET);
-
-            }
-
-             */
-
-
-        }
-        /*
-        for (int e=0;e<word.length();e++){
-            System.out.println(word.toString().charAt(e));
         }
 
-         */
 
-        return word.toString();
+
+
+        return anzeigeFarbausgabeneu(anzeigeArray,eingabe);
+
 
 
     }
@@ -213,7 +154,7 @@ public class BuchstabenManager {
             let.append(letter);
 
         }
-        System.out.println(letter+" "+count);
+        //System.out.println(letter+" "+count);
         return count;
     }
 }
