@@ -45,11 +45,13 @@ public class BuchstabenManager {
         int[] anzeigeArray = new int[loesung.length()];                 // 0 = Zeichen falsch; 1 = Zeichen rot (vorhanden aber falsche Stelle), 2 = Zeichen richtig
 
         int count = 0;
-
+        /*
         if (!(wm.wordExist(eingabe))) {
             System.out.println("Dieses Wort existiert nicht oder entspricht nicht der Länge " + loesung.length());
             return null;
         }
+
+         */
 
         if (wm.checkSolutionWord(loesung, eingabe)) {
 
