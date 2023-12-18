@@ -2,9 +2,10 @@ import java.nio.channels.WritePendingException;
 import java.sql.Time;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         Scanner scanner = new Scanner(System.in);
         WordManager wm;
@@ -21,7 +22,7 @@ public class Main {
         System.out.println(loesung);//Für Debugging
 
         for (int i=0; i<6;i++) {
-
+            TimeUnit.SECONDS.sleep(1);
             System.out.print("Geben Sie das Eingabewort ein: ");
             String eingabe = scanner.next();
             String ergebnis=bm.comparisonOfLetters(loesung, eingabe);

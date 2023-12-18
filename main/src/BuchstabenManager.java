@@ -32,18 +32,18 @@ public class BuchstabenManager {
                 }
             }
         }
-       // System.out.println(let);
         return let.toString();
+
+        // System.out.println(let);
     }
 
 
 
     public  String comparisonOfLetters (String loesung, String eingabe) {
 
-
+        let = new StringBuilder();
         int[] anzeigeArray = new int[loesung.length()];                 // 0 = Zeichen falsch; 1 = Zeichen rot (vorhanden aber falsche Stelle), 2 = Zeichen richtig
 
-        StringBuilder word = new StringBuilder();
         int count = 0;
 
         if (!(wm.wordExist(eingabe))) {
