@@ -31,7 +31,7 @@ public class WordManager {
 
         Random random = new Random();
 
-        return filteredList.get(random.nextInt(filteredList.size())).toUpperCase();
+        return filteredList.get(random.nextInt(filteredList.size()));
 
     }
     public List<String> generateWordList(int wordLength) { // getWordlistbylenght || filterwordsbylength
