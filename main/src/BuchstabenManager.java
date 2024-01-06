@@ -7,8 +7,19 @@ public class BuchstabenManager {
     WordManager wm = new WordManager();
     StringBuilder let =new StringBuilder();
 
+    public TimerManager timerManager;
+    public BuchstabenManager(){
+        timerManager = new TimerManager(this);
 
+    }
+    public void startGame() {
+        timerManager.startTimer();
+    }
 
+    public void handleTimeUp() {
+        System.out.println("Time's up!");
+        // Hier kannst du weitere Aktionen ausführen, wenn die Zeit abgelaufen ist.
+    }
 
     public String anzeigeFarbausgabeneu (int[]anzeigeArray,String eingabe) {
         let.delete(0,100);
@@ -55,6 +66,7 @@ public class BuchstabenManager {
 
         if (wm.checkSolutionWord(loesung, eingabe)) {
 
+            timerManager.stopTimer(); // Timer stoppen, wenn das Spiel gewonnen wurde
             System.out.println("You won!");
             return "WON";
 
